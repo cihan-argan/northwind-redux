@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCategories } from "./CategorySlice";
+import { getCategories, changeCategory } from "./CategorySlice";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
 function CategoryListComponent() {
   const dispatch = useDispatch();
   const categoryData = useSelector((state) => state.CategorySlice.data);
+  const categoryCurrent = useSelector(
+    (state) => state.CategorySlice.currentCategory
+  );
   // const categoryDataStatus = useSelector((state) => state.CategorySlice.status);
 
   useEffect(() => {
@@ -17,7 +20,11 @@ function CategoryListComponent() {
     <div>
       <ListGroup>
         {categoryData.map((categoryItem) => (
-          <ListGroupItem key={categoryItem.id}>
+          <ListGroupItem
+            active={categoryItem.id === categoryCurrent.id}
+            onClick={() => dispatch(changeCategory(categoryItem))}
+            key={categoryItem.id}
+          >
             {categoryItem.categoryName}
           </ListGroupItem>
         ))}

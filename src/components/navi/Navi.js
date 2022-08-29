@@ -18,7 +18,7 @@ export default class Navi extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand href="/">Northwind App</NavbarBrand>
           <NavbarToggler />
           <Collapse navbar>
             <Nav className="ms-auto " navbar>

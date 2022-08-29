@@ -10,11 +10,17 @@ export const getCategories = createAsyncThunk(
 const initialState = {
   status: null,
   data: [],
+  currentCategory: {},
 };
 
 const CategorySlice = createSlice({
   name: "categorySlice",
   initialState,
+  reducers: {
+    changeCategory: (state, action) => {
+      state.currentCategory = action.payload;
+    },
+  },
   extraReducers: {
     [getCategories.pending]: (state) => {
       state.status = "Pending";
@@ -31,4 +37,5 @@ const CategorySlice = createSlice({
   },
 });
 
+export const { changeCategory } = CategorySlice.actions;
 export default CategorySlice.reducer;
