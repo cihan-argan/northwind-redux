@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "./ProductSlice";
-
 import { Table } from "reactstrap";
 
 function ProductListComponent() {
@@ -14,7 +13,7 @@ function ProductListComponent() {
   useEffect(() => {
     dispatch(getProducts(currentCategory.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentCategory]);
   return (
     <div>
       <Table>

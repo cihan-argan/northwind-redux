@@ -9,8 +9,8 @@ export default class ProductList extends Component {
         <h3>
           <Badge color="warning"> Products </Badge>
           <CategoryToProducts />
-          <ProductListComponent />
         </h3>
+        <ProductListComponent />
       </div>
     );
   }
