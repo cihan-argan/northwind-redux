@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "./ProductSlice";
-import { Table } from "reactstrap";
+import { addToCart } from "../cart/CartSlice";
+import { Table, Button } from "reactstrap";
+import alertify from "alertifyjs";
 
 function ProductListComponent() {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ function ProductListComponent() {
     dispatch(getProducts(currentCategory.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory]);
+
   return (
     <div>
       <Table>
@@ -24,6 +27,7 @@ function ProductListComponent() {
             <th>Unit Price</th>
             <th>Quantity Per Unit</th>
             <th>Units In Stock</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +38,17 @@ function ProductListComponent() {
               <td>{productItem.unitPrice} </td>
               <td>{productItem.quantityPerUnit}</td>
               <td>{productItem.unitsInStock}</td>
+              <td>
+                <Button
+                  color="success"
+                  onClick={() => {
+                    dispatch(addToCart(productItem));
+                    alertify.success(productItem.productName + "Eklendi");
+                  }}
+                >
+                  Ekle
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>

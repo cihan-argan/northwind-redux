@@ -3,4 +3,5 @@ export const initalState = {
   data: [],
   currentCategory: {},
   products: [],
+  cart: [],
 };
