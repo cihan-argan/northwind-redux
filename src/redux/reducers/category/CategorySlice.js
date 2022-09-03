@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { initalState } from "../initialState";
-const initialState = initalState;
+import { initialState } from "../initialState";
+
 export const getCategories = createAsyncThunk(
   "CategorySlice/getCategories",
   async () => {

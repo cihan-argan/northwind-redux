@@ -1,7 +1,7 @@
-export const initalState = {
+export const initialState = {
   status: null,
   data: [],
   currentCategory: {},
   products: [],
-  cart: [],
+  cartItems: [],
 };

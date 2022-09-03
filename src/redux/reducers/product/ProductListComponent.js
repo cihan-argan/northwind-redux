@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "./ProductSlice";
-import { addToCart } from "../cart/CartSlice";
+
 import { Table, Button } from "reactstrap";
 import alertify from "alertifyjs";
+import { addToCart } from "../cart/CartSlice";
 
-function ProductListComponent() {
+const ProductListComponent = () => {
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.ProductSlice.products);
   const currentCategory = useSelector(
@@ -16,6 +17,10 @@ function ProductListComponent() {
     dispatch(getProducts(currentCategory.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory]);
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart({ product }));
+  };
 
   return (
     <div>
@@ -42,7 +47,7 @@ function ProductListComponent() {
                 <Button
                   color="success"
                   onClick={() => {
-                    dispatch(addToCart(productItem));
+                    handleAddToCart(productItem);
                     alertify.success(productItem.productName + "Eklendi");
                   }}
                 >
@@ -55,6 +60,6 @@ function ProductListComponent() {
       </Table>
     </div>
   );
-}
+};
 
 export default ProductListComponent;
