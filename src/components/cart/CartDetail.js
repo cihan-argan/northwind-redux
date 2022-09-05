@@ -38,7 +38,7 @@ export default function CartDetail() {
                     alertify.error(item.productName + " Sepetten Silindi");
                   }}
                 >
-                  X
+                  x
                 </Button>
               </td>
             </tr>
