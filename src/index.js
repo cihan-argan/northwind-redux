@@ -6,12 +6,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "alertifyjs/build/css/alertify.min.css";
 import { store } from "./redux/reducers/_store/store";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

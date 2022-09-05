@@ -10,6 +10,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "./CartSlice";
 import alertify from "alertifyjs";
+import { Link } from "react-router-dom";
 const CartSummaryComponent = () => {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.CartSlice.cartItems);
@@ -48,7 +49,9 @@ const CartSummaryComponent = () => {
             </DropdownItem>
           ))}
           <DropdownItem divider />
-          <DropdownItem>Sepete Git</DropdownItem>
+          <DropdownItem>
+            <Link to="/cart">Sepete Git</Link>
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     );
