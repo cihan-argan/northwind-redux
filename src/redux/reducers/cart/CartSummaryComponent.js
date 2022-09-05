@@ -7,12 +7,16 @@ import {
   DropdownItem,
   Badge,
 } from "reactstrap";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart } from "./CartSlice";
+import alertify from "alertifyjs";
 const CartSummaryComponent = () => {
+  const dispatch = useDispatch();
   const cartData = useSelector((state) => state.CartSlice.cartItems);
+  const handlerRemoveItem = (product) => {
+    dispatch(removeFromCart({ product }));
+  };
   const renderEmpty = () => {
-    console.log(cartData);
     return (
       <NavItem>
         <NavLink>Sepetiniz Boş</NavLink>
@@ -28,23 +32,31 @@ const CartSummaryComponent = () => {
         <DropdownMenu end>
           {cartData.map((item) => (
             <DropdownItem key={item.product.id}>
+              <Badge
+                color="danger"
+                onClick={() => {
+                  handlerRemoveItem(item.product);
+                  alertify.error(
+                    item.product.productName + " Sepetten silindi"
+                  );
+                }}
+              >
+                X
+              </Badge>
               {item.product.productName}
               <Badge color="success">{item.quantity}</Badge>
             </DropdownItem>
           ))}
-
           <DropdownItem divider />
           <DropdownItem>Sepete Git</DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     );
   };
-
   if (cartData.length <= 0) {
     return renderEmpty();
   } else {
     return renderSummary(cartData);
   }
 };
-
 export default CartSummaryComponent;
